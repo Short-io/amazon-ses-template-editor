@@ -1,0 +1,176 @@
+<table style="border-collapse: collapse;
+height: 100%;
+margin: 0;
+padding: 0;
+width: 100%;
+background-color: #fafafa;">
+    <thead>
+        <tr>
+            <th colspan="2" style="width: 100%; background: #000; padding: 25px 30px; text-align: left;">
+                <span style="color: #fff; font-size: 20px;">SHORT</span>
+                <span style="font-family:trebuchet ms,lucida grande,lucida sans unicode,lucida sans,tahoma,sans-serif; color:#33D6A3; font-size: 24px; margin: 5px 0;">.</span>
+                <span style="color: #fff; font-size: 20px;">CM</span>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td colspan="2" style="padding: 0 20px;">
+            <p style="font-size: 16px; line-height: 150%;"> Hi, {{user.name}} </p>
+            <p style="font-size: 16px; line-height: 150%;"> Here is your weekly report:</p>
+        </td>
+    </tr>
+
+    {{#domains}}
+    <tr>
+        <td style="padding: 0 20px;">
+            <table style="width: 100%; min-width: 500px; max-width: 750px;">
+                <thead>
+                    <tr>
+                        <th colspan="2" style="text-align: left;"><h2>Domain: <span style="color: #33D6A3;">{{domain.hostname}}</span></h2></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2" style="font-size: 14px;">
+                            <b>Links created:</b> {{stats.links}}; <b>Clicks:</b> {{stats.clicks}} <b>Human clicks:</b> {{stats.humanClicks}}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" style="padding: 25px 0;">
+                            <table style="width: 50%; min-width: 300px; margin: 0 auto; border-collapse: collapse; border: 1px solid #e4e4e4;">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" style="background: #e4e4e4; padding: 5px;">
+                                            <b>Devices Used</b>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody style="background: #fff;">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #e4e4e4; padding: 5px;"></td>
+                                        <td style="border-bottom: 1px solid #e4e4e4; padding: 5px; text-align: center;"><b>Clicks</b></td>
+                                    </tr>
+                                    {{#stats.device}}
+                                        <tr>
+                                            <td style="width: 60%; text-align: center; padding: 5px;">{{deviceName}}</td>
+                                            <td style="text-align: center; padding: 5px;">{{score}}</td>
+                                        </tr>
+                                    {{/stats.device}}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding: 25px 0; width: 50%;">
+                            <table style="border-collapse: collapse; width: 60%; min-width: 200px; margin: 0 auto; border: 1px solid #e4e4e4;">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" style="background: #e4e4e4; padding: 5px;">
+                                            <b>Top Referrers</b>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody style="background: #fff;">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #e4e4e4; padding: 5px;"></td>
+                                        <td style="border-bottom: 1px solid #e4e4e4; padding: 5px;"><b>Clicks</b></td>
+                                    </tr>
+                                    {{#stats.referer}}
+                                        <tr>
+                                            <td style="padding: 5px 8px; width: 65%;">{{referer}}</td>
+                                            <td style="padding: 5px;">{{score}}</td>
+                                        </tr>
+                                    {{/stats.referer}}
+                                </tbody>
+                            </table>
+                        </td>
+                        <td style="padding: 25px 0; width: 50%;">
+                            <table style="border-collapse: collapse; width: 60%; min-width: 200px; margin: 0 auto; border: 1px solid #e4e4e4;">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" style="background: #e4e4e4; padding: 5px;">
+                                            <b>Social Referrers</b>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody style="background: #fff;">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #e4e4e4; padding: 5px;"></td>
+                                        <td style="border-bottom: 1px solid #e4e4e4; padding: 5px;"><b>Clicks</b></td>
+                                    </tr>
+                                    {{#stats.social}}
+                                        <tr>
+                                            <td style="padding: 5px 8px; width: 65%;">{{socialName}}</td>
+                                            <td style="padding: 5px;">{{score}}</td>
+                                        </tr>
+                                    {{/stats.social}}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding: 25px 0; width: 50%;">
+                            <table style="border-collapse: collapse; width: 60%; min-width: 200px; margin: 0 auto; border: 1px solid #e4e4e4;">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" style="background: #e4e4e4; padding: 5px;">
+                                            <b>Top Browsers</b>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody style="background: #fff;">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #e4e4e4; padding: 5px;"></td>
+                                        <td style="border-bottom: 1px solid #e4e4e4; padding: 5px;"><b>Clicks</b></td>
+                                    </tr>
+                                    {{#stats.browser}}
+                                        <tr>
+                                            <td style="padding: 5px 8px; width: 65%;">{{browser}}</td>
+                                            <td style="padding: 5px;">{{score}}</td>
+                                        </tr>
+                                    {{/stats.browser}}
+                                </tbody>
+                            </table>
+                        </td>
+                        <td style="padding: 25px 0; width: 50%;">
+                            <table style="border-collapse: collapse; width: 60%; min-width: 200px; margin: 0 auto; border: 1px solid #e4e4e4;">
+                                <thead style="background: #fff;">
+                                    <tr>
+                                        <th colspan="2" style="background: #e4e4e4; padding: 5px;">
+                                            <b>Top Countries</b>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody style="background: #fff;">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #e4e4e4; padding: 5px;"></td>
+                                        <td style="border-bottom: 1px solid #e4e4e4; padding: 5px;"><b>Clicks</b></td>
+                                    </tr>
+                                    {{#stats.country}}
+                                        <tr>
+                                            <td style="padding: 5px 8px; width: 65%;">{{countryName}}</td>
+                                            <td style="padding: 5px;">{{score}}</td>
+                                        </tr>
+                                    {{/stats.country}}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+                <tr>
+            </table>
+        </td>
+    </tr>
+    {{/domains}}
+    </tbody>
+
+    <tfoot>
+    </tfoot>
+
+</table>
+{{>footer}}

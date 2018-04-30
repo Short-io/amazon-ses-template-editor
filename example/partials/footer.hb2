@@ -1,0 +1,7 @@
+        <p style="color:#999;font-size:0.75em">To unsubscribe from the Shorturl Newsletter, please click &#32;<a href="https://app.short.cm/email/unsubscribe?email={{encodedEmail}}&amp;id={{user.id}}" style="color:#33D6A3;text-decoration:none">here</a>.</p>
+        <div style="height:1px;width:100%;background:#E4E4E4"></div>
+        <p style="color:#999;font-size:0.9em;margin-top:20px">© Copyright 2018 Short.cm. All Rights Reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>
