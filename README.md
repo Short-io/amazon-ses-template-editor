@@ -4,9 +4,9 @@ Console command to edit, test and upload amazon SES templates
 # Usage
 
 ```bash
-    pip install amazon-ses-template-editor
-    amazon-ses-template-editor.py -c config.toml upload
-    amazon-ses-template-editor.py -c config.toml test
+pip install amazon-ses-template-editor
+amazon-ses-template-editor.py -c config.toml upload
+amazon-ses-template-editor.py -c config.toml test
 ```
 
 # Config example
