@@ -1,12 +1,30 @@
 # amazon-ses-template-editor
 Console command to edit, test and upload amazon SES templates
 
-# Usage
+Currently AWS SES has API endpoint to create email templates with handlebars syntax and API endpoint to send emails with template name and a dictionary with template variables.
+But it does not provide any UI to create and edit templates. This script allows you to manage your email templates from command line
+
+# Installation
 
 ```bash
 pip install amazon-ses-template-editor
-amazon-ses-template-editor.py -c config.toml upload
-amazon-ses-template-editor.py -c config.toml test
+```
+
+# Usage
+```
+usage: amazon-ses-template-editor.py [-h] [-c CONFIG] {upload,test} ...
+
+positional arguments:
+  {upload,test}
+    upload              Uploads templates from configuration file to SES using
+                        your system credentials
+    test                Sends emails to your email address so you can test
+                        layout
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -c CONFIG, --config CONFIG
+                        Path to configuration file, default ./config.toml
 ```
 
 # Config example
@@ -16,6 +34,11 @@ amazon-ses-template-editor.py -c config.toml test
 name = 'weekly-email'
 html = "templates/weekly-email.hb2"
 title = 'Your links weekly report'
+
+[[templates]]
+name = 'confirmation-email'
+html = "templates/confirmation-email.hb2"
+title = 'Please verify your email'
 
 [partials]
 footer = 'partials/footer.hb2'

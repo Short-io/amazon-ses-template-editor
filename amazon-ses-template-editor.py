@@ -45,11 +45,11 @@ def test(config):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--config', dest='config', required=False, default='config.toml')
+    parser.add_argument('-c', '--config', dest='config', required=False, default='config.toml', help='Path to configuration file, default ./config.toml')
     subparsers = parser.add_subparsers(dest="subcommand")
     subparsers.required = True
-    subparsers.add_parser('upload')
-    subparsers.add_parser('test')
+    subparsers.add_parser('upload', help='Uploads templates from configuration file to SES using your system credentials')
+    subparsers.add_parser('test', help='Sends emails to your email address so you can test layout')
     args = parser.parse_args()
     if args.subcommand:
         locals()[args.subcommand](toml.load(args.config))
