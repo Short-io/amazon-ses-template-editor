@@ -43,10 +43,13 @@ def test(config):
         )
         print(res)
 
-parser = argparse.ArgumentParser()
-parser.add_argument('-c', '--config', dest='config', required=False, default='config.toml')
-subparsers = parser.add_subparsers(dest="subcommand")
-subparsers.add_parser('upload')
-subparsers.add_parser('test')
-args = parser.parse_args()
-locals()[args.subcommand](toml.load(args.config))
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-c', '--config', dest='config', required=False, default='config.toml')
+    subparsers = parser.add_subparsers(dest="subcommand")
+    subparsers.required = True
+    subparsers.add_parser('upload')
+    subparsers.add_parser('test')
+    args = parser.parse_args()
+    if args.subcommand:
+        locals()[args.subcommand](toml.load(args.config))
