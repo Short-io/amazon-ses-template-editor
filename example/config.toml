@@ -1,7 +1,7 @@
 [[templates]]
 name = 'weekly-email'
 html = "templates/weekly-email.hb2"
-title = 'Your links weekly report'
+subject = 'Your links weekly report'
 
 [partials]
 footer = 'partials/footer.hb2'

@@ -15,7 +15,7 @@ setup(name='amazon-ses-template-editor',
       scripts=['amazon-ses-template-editor.py'],
       long_description_content_type="text/markdown",
       long_description=open('README.md').read(),
-      install_requires=reqs
+      install_requires=reqs,
       url='https://github.com/Short-cm/amazon-ses-template-editor',
       python_requires='>=3.4.0',
      )
