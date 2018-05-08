@@ -20,6 +20,7 @@ positional arguments:
                         your system credentials
     test                Sends emails to your email address so you can test
                         layout
+    preview             Starts minimal http server for email template testing
 
 optional arguments:
   -h, --help            show this help message and exit
