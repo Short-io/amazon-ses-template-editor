@@ -61,6 +61,7 @@ def configure_handler(config):
                 self.end_headers()
                 return
             self.send_response(200)
+            self.send_header('Content-Type', 'text/html; charset=utf-8')
             self.end_headers()
             test_config = matching_templates[0]
             template_path = _get_template_by_path(self.config, test_config['template'])['html']

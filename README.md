@@ -12,10 +12,11 @@ pip install amazon-ses-template-editor
 
 # Usage
 ```
-usage: amazon-ses-template-editor.py [-h] [-c CONFIG] {upload,test} ...
+usage: amazon-ses-template-editor.py [-h] [-c CONFIG]
+                                     {upload,test,preview} ...
 
 positional arguments:
-  {upload,test}
+  {upload,test,preview}
     upload              Uploads templates from configuration file to SES using
                         your system credentials
     test                Sends emails to your email address so you can test
