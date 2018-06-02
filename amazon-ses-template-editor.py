@@ -15,7 +15,7 @@ def _get_template_by_path(config, name):
             return template_conf
 
 def upload_test(config):
-    upload(config, 'test_')
+    upload(config, 'test-')
 
 
 def upload(config, prefix=''):
@@ -49,7 +49,7 @@ def test(config):
                 ToAddresses=config['tests']['to'],
             ),
             Source=config['tests']['from'],
-            Template='test_' + test['template'],
+            Template='test-' + test['template'],
             TemplateData=json.dumps(test['data']),
             ConfigurationSetName='template',
         )
