@@ -14,8 +14,11 @@ def _get_template_by_path(config, name):
         if template_conf['name'] == name:
             return template_conf
 
+def upload_test(config):
+    upload(config, 'test_')
 
-def upload(config):
+
+def upload(config, prefix=''):
     for template_conf in config['templates']:
         html_part = open(template_conf['html']).read()
         for partial_name, partial in config.get('partials', []).items():
@@ -26,14 +29,14 @@ def upload(config):
         text_part = open(template_conf['text']).read() if template_conf.get('text') else ''
         try:
             ses.create_template(Template=dict(
-                TemplateName=template_conf['name'],
+                TemplateName=prefix + template_conf['name'],
                 SubjectPart=template_conf['subject'],
                 TextPart=text_part,
                 HtmlPart=html_part,
             ))
         except ses.exceptions.AlreadyExistsException:
             ses.update_template(Template=dict(
-                TemplateName=template_conf['name'],
+                TemplateName=prefix + template_conf['name'],
                 SubjectPart=template_conf['subject'],
                 TextPart=text_part,
                 HtmlPart=html_part,
@@ -43,10 +46,10 @@ def test(config):
     for test in config['test']:
         res = ses.send_templated_email(
             Destination=dict(
-                ToAddresses=[config['tests']['to']],
+                ToAddresses=config['tests']['to'],
             ),
             Source=config['tests']['from'],
-            Template=test['template'],
+            Template='test_', test['template'],
             TemplateData=json.dumps(test['data']),
             ConfigurationSetName='template',
         )
@@ -117,6 +120,7 @@ if __name__ == '__main__':
     subparsers = parser.add_subparsers(dest="subcommand")
     subparsers.required = True
     subparsers.add_parser('upload', help='Uploads templates from configuration file to SES using your system credentials')
+    subparsers.add_parser('upload_test', help='Uploads templates for testing purposes')
     subparsers.add_parser('test', help='Sends emails to your email address so you can test layout')
     subparsers.add_parser('preview', help='Starts minimal http server for email template testing')
     args = parser.parse_args()

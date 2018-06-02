@@ -8,7 +8,7 @@ install_reqs = parse_requirements('requirements.txt', session='hack')
 reqs = [str(ir.req) for ir in install_reqs]
 
 setup(name='amazon-ses-template-editor',
-      version='0.3.7',
+      version='0.4.1',
       description='A tool for editing, uploading and testing Amazon SES email templates',
       author='Andrii Kostenko',
       author_email='andrii@short.cm',
