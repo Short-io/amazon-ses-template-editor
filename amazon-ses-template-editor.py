@@ -49,7 +49,7 @@ def test(config):
                 ToAddresses=config['tests']['to'],
             ),
             Source=config['tests']['from'],
-            Template='test_', test['template'],
+            Template='test_' + test['template'],
             TemplateData=json.dumps(test['data']),
             ConfigurationSetName='template',
         )

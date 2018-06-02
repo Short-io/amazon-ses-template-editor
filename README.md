@@ -19,6 +19,7 @@ positional arguments:
   {upload,test,preview}
     upload              Uploads templates from configuration file to SES using
                         your system credentials
+    upload_test         Uploads templates for testing purposes
     test                Sends emails to your email address so you can test
                         layout
     preview             Starts minimal http server for email template testing
@@ -47,7 +48,7 @@ footer = 'partials/footer.hb2'
 
 [tests]
 from = 'andrii@short.cm'
-to = 'andrey@kostenko.name'
+to = ['andrey@kostenko.name', 'someone_else@short.cm'
 [[test]]
 template = 'weekly-email'
     [test.data]
