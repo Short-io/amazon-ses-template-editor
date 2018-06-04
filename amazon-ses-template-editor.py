@@ -81,7 +81,7 @@ def configure_handler(config):
             var source   = document.getElementById("entry-template").innerHTML;
             for (var partial of document.getElementsByClassName("__partial"))
                 Handlebars.registerPartial(partial.id, partial.innerHTML);
-            var template = Handlebars.compile(source, {strict: true});
+            var template = Handlebars.compile(source, {{strict: true}});
             var context = {json.dumps(test_config['data'])};
             var html    = template(context);
             document.getElementById("root").innerHTML = html;
