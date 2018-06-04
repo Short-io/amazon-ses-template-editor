@@ -1,4 +1,5 @@
-# amazon-ses-template-editor
+# Create, preview, test and upload Amazon SES templates
+
 Console command to edit, test and upload amazon SES templates
 
 Currently AWS SES has API endpoint to create email templates with handlebars syntax and API endpoint to send emails with template name and a dictionary with template variables.
