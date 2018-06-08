@@ -49,7 +49,8 @@ footer = 'partials/footer.hb2'
 
 [tests]
 from = 'andrii@short.cm'
-to = ['andrey@kostenko.name', 'someone_else@short.cm'
+to = ['andrey@kostenko.name', 'someone_else@short.cm']
+
 [[test]]
 template = 'weekly-email'
     [test.data]
