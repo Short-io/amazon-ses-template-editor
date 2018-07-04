@@ -1,5 +1,7 @@
 # Create, preview, test and upload Amazon SES templates
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/2c5997ebabeaf46de9d8/maintainability)](https://codeclimate.com/github/Short-cm/amazon-ses-template-editor/maintainability)
+
 Console command to edit, test and upload amazon SES templates
 
 Currently AWS SES has API endpoint to create email templates with handlebars syntax and API endpoint to send emails with template name and a dictionary with template variables.
