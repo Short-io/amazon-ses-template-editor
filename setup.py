@@ -1,14 +1,18 @@
 #!/usr/bin/env python
 
 from setuptools import setup
-from pip.req import parse_requirements
+
+def parse_requirements(filename):
+    """ load requirements from a pip requirements file """
+    lineiter = (line.strip() for line in open(filename))
+    return [line for line in lineiter if line and not line.startswith("#")]
 
 
-install_reqs = parse_requirements('requirements.txt', session='hack')
-reqs = [str(ir.req) for ir in install_reqs]
+
+reqs = parse_requirements('requirements.txt')
 
 setup(name='amazon-ses-template-editor',
-      version='0.4.6',
+      version='0.4.7',
       description='A tool for editing, uploading and testing Amazon SES email templates',
       author='Andrii Kostenko',
       author_email='andrii@short.cm',
