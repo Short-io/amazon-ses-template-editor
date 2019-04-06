@@ -12,7 +12,7 @@ def parse_requirements(filename):
 reqs = parse_requirements('requirements.txt')
 
 setup(name='amazon-ses-template-editor',
-      version='0.4.7',
+      version='0.5.0',
       description='A tool for editing, uploading and testing Amazon SES email templates',
       author='Andrii Kostenko',
       author_email='andrii@short.cm',
