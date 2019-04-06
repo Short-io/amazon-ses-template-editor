@@ -33,6 +33,35 @@ optional arguments:
                         Path to configuration file, default ./config.toml
 ```
 
+## Uploading emails
+```
+usage: amazon-ses-template-editor.py upload [-h] [-t TEMPLATE]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t TEMPLATE, --template TEMPLATE
+                        Uploads only one template with given name
+```
+## Testing emails
+```
+usage: amazon-ses-template-editor.py upload_test [-h] [-t TEMPLATE]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t TEMPLATE, --template TEMPLATE
+                        Uploads only one template with given name
+
+
+usage: amazon-ses-template-editor.py test [-h] [-t TEMPLATE]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t TEMPLATE, --template TEMPLATE
+                        Uploads only one template with given name
+```
+
+## Testing emails
+
 # Config example
 
 ```toml

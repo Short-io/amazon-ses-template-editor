@@ -14,12 +14,14 @@ def _get_template_by_path(config, name):
         if template_conf['name'] == name:
             return template_conf
 
-def upload_test(config):
-    upload(config, 'test-')
+def upload_test(config, args):
+    upload(config, args, 'test-')
 
 
-def upload(config, prefix=''):
+def upload(config, args, prefix=''):
     for template_conf in config['templates']:
+        if args.template is not None and template_conf['name'] != args.template:
+            continue
         html_part = open(template_conf['html']).read()
         for partial_name, partial in config.get('partials', []).items():
             partial_text = '{{#* inline \"%s\"}}' % partial_name
@@ -27,14 +29,16 @@ def upload(config, prefix=''):
             partial_text += '{{/inline~}}'
             html_part = partial_text + html_part
         text_part = open(template_conf['text']).read() if template_conf.get('text') else ''
-        try:
+        if not ses.get_template(TemplateName=prefix + template_conf['name']):
+            print("Created template " + template_conf['name'])
             ses.create_template(Template=dict(
                 TemplateName=prefix + template_conf['name'],
                 SubjectPart=template_conf['subject'],
                 TextPart=text_part,
                 HtmlPart=html_part,
             ))
-        except ses.exceptions.AlreadyExistsException:
+        else:
+            print("Updated template " + template_conf['name'])
             ses.update_template(Template=dict(
                 TemplateName=prefix + template_conf['name'],
                 SubjectPart=template_conf['subject'],
@@ -42,8 +46,10 @@ def upload(config, prefix=''):
                 HtmlPart=html_part,
             ))
 
-def test(config):
+def test(config, args):
     for test in config['test']:
+        if args.template is not None and test['template'] != args.template:
+            continue
         res = ses.send_templated_email(
             Destination=dict(
                 ToAddresses=config['tests']['to'],
@@ -104,7 +110,7 @@ def configure_handler(config):
     HB2Handler.config = config
     return HB2Handler
 
-def preview(config):
+def preview(config, args):
     Handler = configure_handler(config)
     httpd = socketserver.TCPServer(("", 8654), Handler, bind_and_activate=False)
     httpd.allow_reuse_address = True
@@ -119,10 +125,13 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--config', dest='config', required=False, default='config.toml', help='Path to configuration file, default ./config.toml')
     subparsers = parser.add_subparsers(dest="subcommand")
     subparsers.required = True
-    subparsers.add_parser('upload', help='Uploads templates from configuration file to SES using your system credentials')
-    subparsers.add_parser('upload_test', help='Uploads templates for testing purposes')
-    subparsers.add_parser('test', help='Sends emails to your email address so you can test layout')
+    upload_parser = subparsers.add_parser('upload', help='Uploads templates from configuration file to SES using your system credentials')
+    upload_parser.add_argument('-t', '--template', dest='template', help='Uploads only one template with given name')
+    upload_test_parser = subparsers.add_parser('upload_test', help='Uploads templates for testing purposes')
+    upload_test_parser.add_argument('-t', '--template', dest='template', help='Uploads only one template with given name')
+    test_parser = subparsers.add_parser('test', help='Sends emails to your email address so you can test layout')
+    test_parser.add_argument('-t', '--template', dest='template', help='Uploads only one template with given name')
     subparsers.add_parser('preview', help='Starts minimal http server for email template testing')
     args = parser.parse_args()
     if args.subcommand:
-        locals()[args.subcommand](toml.load(args.config))
+        locals()[args.subcommand](toml.load(args.config), args)
