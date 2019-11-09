@@ -29,17 +29,18 @@ def upload(config, args, prefix=''):
             partial_text += '{{/inline~}}'
             html_part = partial_text + html_part
         text_part = open(template_conf['text']).read() if template_conf.get('text') else ''
-        if not ses.get_template(TemplateName=prefix + template_conf['name']):
-            print("Created template " + template_conf['name'])
-            ses.create_template(Template=dict(
+        try:
+            ses.get_template(TemplateName=prefix + template_conf['name'])
+            print("Updated template " + template_conf['name'])
+            ses.update_template(Template=dict(
                 TemplateName=prefix + template_conf['name'],
                 SubjectPart=template_conf['subject'],
                 TextPart=text_part,
                 HtmlPart=html_part,
             ))
-        else:
-            print("Updated template " + template_conf['name'])
-            ses.update_template(Template=dict(
+        except ses.exceptions.TemplateDoesNotExistException as e:
+            print("Created template " + template_conf['name'])
+            ses.create_template(Template=dict(
                 TemplateName=prefix + template_conf['name'],
                 SubjectPart=template_conf['subject'],
                 TextPart=text_part,
