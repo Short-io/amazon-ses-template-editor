@@ -1,3 +1,8 @@
+# You don't seed this module anymore. SendEmail can accept template now
+
+
+https://aws.amazon.com/about-aws/whats-new/2024/11/amazon-ses-inline-template-support-send-email-apis/
+
 # Create, preview, test and upload Amazon SES templates
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/2c5997ebabeaf46de9d8/maintainability)](https://codeclimate.com/github/Short-cm/amazon-ses-template-editor/maintainability)
